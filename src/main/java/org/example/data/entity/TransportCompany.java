@@ -28,6 +28,9 @@ public class TransportCompany extends BaseEntityModel {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Vehicle> vehicles = new HashSet<>();
 
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Client> clients = new HashSet<>();
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -42,4 +45,7 @@ public class TransportCompany extends BaseEntityModel {
 
     public Set<Employee> getVehicles() { return employees; }
     public void setVehicles(Set<Vehicle> vehicles) { this.vehicles = vehicles; }
+
+    public Set<Client> getClients() { return clients; }
+    public void setClients(Set<Client> clients) { this.clients = clients; }
 }

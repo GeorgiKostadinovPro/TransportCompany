@@ -1,5 +1,6 @@
 package org.example.data.configuration;
 
+import org.example.data.entity.Client;
 import org.example.data.entity.Employee;
 import org.example.data.entity.TransportCompany;
 import org.example.data.entity.Vehicle;
@@ -16,6 +17,7 @@ public class SessionFactoryUtil {
             Configuration configuration = new Configuration();
 
             // Declare DB Sets
+            configuration.addAnnotatedClass(Client.class);
             configuration.addAnnotatedClass(Vehicle.class);
             configuration.addAnnotatedClass(Employee.class);
             configuration.addAnnotatedClass(TransportCompany.class);
