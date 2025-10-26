@@ -23,6 +23,7 @@ public class Client extends BaseEntityModel {
     @Size(max = 20)
     private String phone;
 
+    @Column(name = "has_paid")
     private boolean hasPaid;
 
     @ManyToOne
