@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 import org.example.data.common.BaseEntityModel;
 import org.example.data.enums.VehicleType;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "vehicles")
 public class Vehicle extends BaseEntityModel {
@@ -23,7 +26,10 @@ public class Vehicle extends BaseEntityModel {
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
-    private TransportCompany company;
+    private Company company;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Cargo> cargos = new HashSet<>();
 
     public String getRegistrationNumber() { return registrationNumber; }
     public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
@@ -34,6 +40,9 @@ public class Vehicle extends BaseEntityModel {
     public double getCapacity() { return capacity; }
     public void setCapacity(double capacity) { this.capacity = capacity; }
 
-    public TransportCompany getCompany() { return company; }
-    public void setCompany(TransportCompany company) { this.company = company; }
+    public Company getCompany() { return company; }
+    public void setCompany(Company company) { this.company = company; }
+
+    public Set<Cargo> getCargos() { return cargos; }
+    public void setCargos(Set<Cargo> cargos) { this.cargos = cargos; }
 }

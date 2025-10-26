@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "transport_companies")
-public class TransportCompany extends BaseEntityModel {
+@Table(name = "companies")
+public class Company extends BaseEntityModel {
     @NotBlank
     @Size(max = 100)
     private String name;
@@ -31,6 +31,9 @@ public class TransportCompany extends BaseEntityModel {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Client> clients = new HashSet<>();
 
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Cargo> cargos = new HashSet<>();
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -48,4 +51,7 @@ public class TransportCompany extends BaseEntityModel {
 
     public Set<Client> getClients() { return clients; }
     public void setClients(Set<Client> clients) { this.clients = clients; }
+
+    public Set<Cargo> getCargos() { return cargos; }
+    public void setCargos(Set<Cargo> cargos) { this.cargos = cargos; }
 }

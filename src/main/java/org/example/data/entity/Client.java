@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "clients")
@@ -25,7 +27,10 @@ public class Client extends BaseEntityModel {
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
-    private TransportCompany company;
+    private Company company;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Cargo> cargos = new HashSet<>();
 
     // Getters and setters
     public String getName() { return name; }
@@ -40,6 +45,9 @@ public class Client extends BaseEntityModel {
     public boolean isHasPaid() { return hasPaid; }
     public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
 
-    public TransportCompany getCompany() { return company; }
-    public void setCompany(TransportCompany company) { this.company = company; }
+    public Company getCompany() { return company; }
+    public void setCompany(Company company) { this.company = company; }
+
+    public Set<Cargo> getCargos() { return cargos; }
+    public void setCargos(Set<Cargo> cargos) { this.cargos = cargos; }
 }
