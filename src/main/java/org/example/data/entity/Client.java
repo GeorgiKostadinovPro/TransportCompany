@@ -42,7 +42,7 @@ public class Client extends BaseEntityModel {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    public boolean isHasPaid() { return hasPaid; }
+    public boolean hasPaid() { return hasPaid; }
     public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
 
     public Company getCompany() { return company; }

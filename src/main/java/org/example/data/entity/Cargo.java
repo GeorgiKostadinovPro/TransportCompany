@@ -13,6 +13,11 @@ import java.time.LocalDateTime;
 @Table(name = "cargos")
 public class Cargo extends BaseEntityModel {
     @Positive
+    private double price;
+
+    private boolean isPaid;
+
+    @Positive
     private double weight;
 
     @NotBlank
@@ -45,6 +50,12 @@ public class Cargo extends BaseEntityModel {
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public boolean getIsPaid() { return isPaid; }
+    public void setIsPaid(boolean isPaid) { this.isPaid = isPaid; }
 
     public double getWeight() { return weight; }
     public void setWeight(double weight) { this.weight = weight; }
