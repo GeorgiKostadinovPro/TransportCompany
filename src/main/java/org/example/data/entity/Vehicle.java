@@ -6,7 +6,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.example.data.common.BaseEntityModel;
-import org.example.data.enums.VehicleType;
+import org.example.data.entity.enums.VehicleType;
 
 import java.util.HashSet;
 import java.util.Set;

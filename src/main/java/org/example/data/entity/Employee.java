@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import org.example.data.enums.DriverType;
+import org.example.data.entity.enums.DriverType;
 import org.example.data.common.BaseEntityModel;
 
 import java.util.HashSet;

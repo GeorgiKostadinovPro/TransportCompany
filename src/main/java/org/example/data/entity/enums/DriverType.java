@@ -1,4 +1,4 @@
-package org.example.data.enums;
+package org.example.data.entity.enums;
 
 public enum DriverType {
     REGULAR,

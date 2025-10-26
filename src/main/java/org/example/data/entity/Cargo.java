@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 import org.example.data.common.BaseEntityModel;
-import org.example.data.enums.CargoType;
+import org.example.data.entity.enums.CargoType;
 
 import java.time.LocalDateTime;
 
