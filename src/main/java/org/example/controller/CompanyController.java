@@ -69,6 +69,7 @@ public class CompanyController implements ICompanyController {
         LocalDateTime end = LocalDateTime.parse(args[2]);
 
         double revenue = companyService.getCompanyRevenueForPeriod(companyId, start, end);
+
         return String.format(COMPANY_REVENUE_FOR_PERIOD, companyId, revenue);
     }
 }
