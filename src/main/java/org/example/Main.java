@@ -3,6 +3,9 @@ package org.example;
 import org.example.core.*;
 import org.example.core.contracts.*;
 import org.example.data.configuration.SessionFactoryUtil;
+import org.example.data.entity.Cargo;
+import org.example.data.entity.Company;
+import org.example.data.entity.Employee;
 import org.example.data.entity.enums.CargoType;
 import org.example.data.entity.enums.DriverType;
 import org.example.data.entity.enums.VehicleType;
@@ -18,6 +21,7 @@ import org.example.dto.vehicle.UpdateVehicleDto;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -124,8 +128,33 @@ public class Main {
             cargoService.create(createCargoDto);
             System.out.println("Cargo recorded successfully!");
 
+            /// TASK 6
             boolean paid = clientService.hasClientPaidAllDebts(1L);
             System.out.println("Client has paid all debts: " + paid);
+
+            cargoService.payForCargo(1L);
+
+            paid = clientService.hasClientPaidAllDebts(1L);
+            System.out.println("Client has paid all debts: " + paid);
+
+            ///  TASK 7
+            ///  a.
+            List<Company> companies = companyService.getSortedByNameAndRevenue();
+            System.out.println("Companies sorted by name and revenue: ");
+            companies.forEach(c -> System.out.println(c.getName() + " " + c.getRevenue()));
+
+            /// b.
+            List<Employee> employees = employeeService.getByCompanyIdAndSortByQualificationAndSalary(1L);
+            System.out.println("Employees by company id sorted by qualification and salary: ");
+            employees.forEach(e -> System.out.println(e.getName() + " " + e.getSalary()));
+
+            ///  c.
+            List<Cargo> cargos = cargoService.getByCompanyIdAndSortByDestination(1L);
+            System.out.println("Cargos by company Id and sorted by destination: " + paid);
+            cargos.forEach(c -> System.out.println(c.getDestination()));
+
+            ///  TASK 8
+
         }
     }
 }

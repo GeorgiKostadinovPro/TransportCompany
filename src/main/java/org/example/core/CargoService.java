@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CargoService implements ICargoService {
     public CargoService() {}
@@ -47,6 +48,31 @@ public class CargoService implements ICargoService {
 
             session.save(cargo);
             tx.commit();
+        }
+    }
+
+    public void payForCargo(long cargoId) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            Cargo cargo = session.get(Cargo.class, cargoId);
+            if (cargo == null) {
+                throw new IllegalArgumentException("Cargo with id " + cargoId + " not found!");
+            }
+
+            cargo.setIsPaid(true);
+
+            session.update(cargo);
+            tx.commit();
+        }
+    }
+
+    public List<Cargo> getByCompanyIdAndSortByDestination(long companyId) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Cargo c WHERE c.company.id = :companyId ORDER BY c.destination ASC";
+            return session.createQuery(hql, Cargo.class)
+                    .setParameter("companyId", companyId)
+                    .getResultList();
         }
     }
 }

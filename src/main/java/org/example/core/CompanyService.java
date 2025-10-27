@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 import javax.validation.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CompanyService implements ICompanyService {
     public CompanyService() {}
@@ -67,6 +68,15 @@ public class CompanyService implements ICompanyService {
 
             session.delete(company);
             tx.commit();
+        }
+    }
+
+    @Override
+    public List<Company> getSortedByNameAndRevenue() {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                    "FROM Company c ORDER BY c.name ASC, c.revenue DESC", Company.class
+            ).list();
         }
     }
 }

@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class EmployeeService implements IEmployeeService {
     public EmployeeService() {}
@@ -74,6 +75,19 @@ public class EmployeeService implements IEmployeeService {
 
             session.delete(employee);
             tx.commit();
+        }
+    }
+
+    @Override
+    public List<Employee> getByCompanyIdAndSortByQualificationAndSalary(long companyId) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM Employee e " +
+                                    "WHERE e.company.id = :companyId " +
+                                    "ORDER BY e.driverType ASC, e.salary DESC", Employee.class
+                    )
+                    .setParameter("companyId", companyId)
+                    .list();
         }
     }
 }
