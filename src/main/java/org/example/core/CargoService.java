@@ -61,6 +61,7 @@ public class CargoService implements ICargoService {
             }
 
             cargo.setIsPaid(true);
+            cargo.setModifiedDate(LocalDateTime.now());
 
             session.update(cargo);
             tx.commit();
