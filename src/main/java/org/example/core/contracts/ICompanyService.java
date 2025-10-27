@@ -1,7 +1,7 @@
 package org.example.core.contracts;
 
-import org.example.dto.CreateCompanyDto;
-import org.example.dto.UpdateCompanyDto;
+import org.example.dto.company.CreateCompanyDto;
+import org.example.dto.company.UpdateCompanyDto;
 
 public interface ICompanyService {
     void create(CreateCompanyDto dto);

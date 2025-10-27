@@ -3,8 +3,8 @@ package org.example;
 import org.example.core.CompanyService;
 import org.example.core.contracts.ICompanyService;
 import org.example.data.configuration.SessionFactoryUtil;
-import org.example.dto.CreateCompanyDto;
-import org.example.dto.UpdateCompanyDto;
+import org.example.dto.company.CreateCompanyDto;
+import org.example.dto.company.UpdateCompanyDto;
 import org.hibernate.Session;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

@@ -1,20 +1,8 @@
-package org.example.data.entity;
+package org.example.dto.client;
 
-import javax.persistence.*;
-import org.example.data.common.BaseEntityModel;
+import javax.validation.constraints.*;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table(name = "clients")
-public class Client extends BaseEntityModel {
+public class CreateClientDto {
     @NotBlank(message = "Client name cannot be blank!")
     @Size(max = 50, message = "Client name must be up to 50 characters!")
     @Pattern(regexp = "^[A-Z].*", message = "Client name must start with a capital letter!")
@@ -29,15 +17,18 @@ public class Client extends BaseEntityModel {
     @Size(max = 20, message = "Phone number must be up to 20 characters!")
     private String phone;
 
-    @Column(name = "has_paid", nullable = false)
     private boolean hasPaid;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
+    @Positive(message = "Company ID must be a positive number!")
+    private long companyId;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Cargo> cargos = new HashSet<>();
+    public CreateClientDto(String name, String email, String phone, boolean hasPaid, long companyId) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.hasPaid = hasPaid;
+        this.companyId = companyId;
+    }
 
     // Getters and setters
     public String getName() { return name; }
@@ -49,12 +40,9 @@ public class Client extends BaseEntityModel {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    public boolean hasPaid() { return hasPaid; }
+    public boolean isHasPaid() { return hasPaid; }
     public void setHasPaid(boolean hasPaid) { this.hasPaid = hasPaid; }
 
-    public Company getCompany() { return company; }
-    public void setCompany(Company company) { this.company = company; }
-
-    public Set<Cargo> getCargos() { return cargos; }
-    public void setCargos(Set<Cargo> cargos) { this.cargos = cargos; }
+    public long getCompanyId() { return companyId; }
+    public void setCompanyId(long companyId) { this.companyId = companyId; }
 }

@@ -3,8 +3,8 @@ package org.example.core;
 import org.example.core.contracts.ICompanyService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Company;
-import org.example.dto.CreateCompanyDto;
-import org.example.dto.UpdateCompanyDto;
+import org.example.dto.company.CreateCompanyDto;
+import org.example.dto.company.UpdateCompanyDto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -58,7 +58,6 @@ public class CompanyService implements ICompanyService {
 
             Company company = session.get(Company.class, dto.getId());
             if (company == null) {
-                tx.rollback();
                 throw new IllegalArgumentException("Company with id " + dto.getId() + " not found.");
             }
 
@@ -79,7 +78,6 @@ public class CompanyService implements ICompanyService {
 
             Company company = session.get(Company.class, id);
             if (company == null) {
-                tx.rollback();
                 throw new IllegalArgumentException("Company with id " + id + " not found.");
             }
 
