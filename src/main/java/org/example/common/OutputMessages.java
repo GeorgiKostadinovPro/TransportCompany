@@ -17,12 +17,12 @@ public class OutputMessages {
     public static final String CLIENT_PAID_DEBTS = "Client has paid all debts.";
     public static final String CLIENT_NOT_PAID_DEBTS = "Client still has unpaid debts.";
 
-    ///  VEHICLE
+    ///   VEHICLE
     public static final String VEHICLE_CREATED_SUCCESSFULLY = "Vehicle created successfully.";
     public static final String VEHICLE_UPDATED_SUCCESSFULLY = "Vehicle updated successfully.";
     public static final String VEHICLE_DELETED_SUCCESSFULLY = "Vehicle deleted successfully.";
 
-    /// EMPLOYEE
+    ///   EMPLOYEE
     public static final String EMPLOYEE_CREATED_SUCCESSFULLY = "Employee created successfully.";
     public static final String EMPLOYEE_UPDATED_SUCCESSFULLY = "Employee updated successfully.";
     public static final String EMPLOYEE_DELETED_SUCCESSFULLY = "Employee deleted successfully.";
@@ -30,4 +30,12 @@ public class OutputMessages {
     public static final String EMPLOYEE_WITH_NAME_TYPE_PRICE = "%s | %s | %.2f";
     public static final String EMPLOYEE_WITH_CARGO_COUNT = "%s | %d cargo(s)";
     public static final String EMPLOYEE_WITH_TOTAL_REVENUE = "%s | $%.2f";
+
+    ///   CARGO
+    public static final String CARGO_CREATED_SUCCESSFULLY = "Cargo created successfully.";
+    public static final String CARGO_PAYMENT_COMPLETED = "Cargo payment marked as completed.";
+
+    public static final String CARGO_WITH_DESTINATION = "Cargo #%s | destination %s";
+    public static final String CARGO_COUNT_BY_COMPANY = "Total cargos for company #%s: %d cargo(s)";
+    public static final String TOTAL_CARGO_REVENUE_BY_COMPANY = "Total revenue for company #%d: $%.f2";
 }

@@ -10,11 +10,9 @@ public interface ICargoService {
     void create(CreateCargoDto dto);
     void payForCargo(long id);
 
-    CargoDto getCargoById(long id);
+    CargoDto getById(long id);
     List<Cargo> getByCompanyIdAndSortByDestination(long companyId);
 
     long getCountByCompanyId(long companyId);
     double getTotalRevenueByCompanyId(long companyId);
-
-
 }

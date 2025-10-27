@@ -157,7 +157,7 @@ public class Main {
 
             ///  TASK 8
             FileService fileService = new FileService();
-            CargoDto cargoDto = cargoService.getCargoById(1L);
+            CargoDto cargoDto = cargoService.getById(1L);
             fileService.saveCargoAsFile(cargoDto);
             System.out.println(fileService.readCargoFromFile(1L));
         }

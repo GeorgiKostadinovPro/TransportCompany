@@ -89,7 +89,8 @@ public class EmployeeController implements IEmployeeController {
     @Override
     public String getDriverRevenueByCompanyId(String[] args) {
         long companyId = Long.parseLong(args[0]);
-        List<DriverWithTotalRevenueDto> revenues = employeeService.getDriverRevenueByCompanyId(companyId);
+        List<DriverWithTotalRevenueDto> revenues = this.employeeService
+                .getDriverRevenueByCompanyId(companyId);
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
         revenues.forEach(d -> res.add(

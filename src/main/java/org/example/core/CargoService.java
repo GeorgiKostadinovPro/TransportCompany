@@ -72,7 +72,7 @@ public class CargoService implements ICargoService {
     }
 
     @Override
-    public CargoDto getCargoById(long id) {
+    public CargoDto getById(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
