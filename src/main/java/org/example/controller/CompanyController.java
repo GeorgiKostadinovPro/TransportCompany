@@ -2,6 +2,7 @@ package org.example.controller;
 
 
 import org.example.controller.contracts.ICompanyController;
+import org.example.core.CompanyService;
 import org.example.core.contracts.ICompanyService;
 import org.example.dto.company.CreateCompanyDto;
 import org.example.dto.company.UpdateCompanyDto;
@@ -14,8 +15,8 @@ import static org.example.common.OutputMessages.*;
 public class CompanyController implements ICompanyController {
     private final ICompanyService companyService;
 
-    public CompanyController(ICompanyService companyService) {
-        this.companyService = companyService;
+    public CompanyController() {
+        this.companyService = new CompanyService();
     }
 
     @Override
@@ -24,7 +25,7 @@ public class CompanyController implements ICompanyController {
         String addr = args[1];
         double revenue = Double.parseDouble(args[2]);
 
-        companyService.create(new CreateCompanyDto(name, addr, revenue));
+        this.companyService.create(new CreateCompanyDto(name, addr, revenue));
 
         return COMPANY_CREATED_SUCCESSFULLY;
     }
@@ -36,7 +37,7 @@ public class CompanyController implements ICompanyController {
         String addr = args[2];
         double revenue = Double.parseDouble(args[3]);
 
-        companyService.update(new UpdateCompanyDto(id, name, addr, revenue));
+        this.companyService.update(new UpdateCompanyDto(id, name, addr, revenue));
 
         return COMPANY_UPDATED_SUCCESSFULLY;
     }
@@ -45,14 +46,14 @@ public class CompanyController implements ICompanyController {
     public String delete(String[] args) {
         long id = Long.parseLong(args[0]);
 
-        companyService.delete(id);
+        this.companyService.delete(id);
 
         return COMPANY_DELETED_SUCCESSFULLY;
     }
 
     @Override
     public String getCompaniesSortedByNameAndRevenue() {
-        var companies = companyService.getSortedByNameAndRevenue();
+        var companies = this.companyService.getSortedByNameAndRevenue();
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
         companies.forEach(c ->
@@ -68,7 +69,7 @@ public class CompanyController implements ICompanyController {
         LocalDateTime start = LocalDateTime.parse(args[1]);
         LocalDateTime end = LocalDateTime.parse(args[2]);
 
-        double revenue = companyService.getCompanyRevenueForPeriod(companyId, start, end);
+        double revenue = this.companyService.getCompanyRevenueForPeriod(companyId, start, end);
 
         return String.format(COMPANY_REVENUE_FOR_PERIOD, companyId, revenue);
     }

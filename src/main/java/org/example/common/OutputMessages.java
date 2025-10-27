@@ -16,6 +16,11 @@ public class OutputMessages {
 
     public static final String CLIENT_PAID_DEBTS = "Client has paid all debts.";
     public static final String CLIENT_NOT_PAID_DEBTS = "Client still has unpaid debts.";
+
+    ///  VEHICLE
+    public static final String VEHICLE_CREATED_SUCCESSFULLY = "Vehicle created successfully.";
+    public static final String VEHICLE_UPDATED_SUCCESSFULLY = "Vehicle updated successfully.";
+    public static final String VEHICLE_DELETED_SUCCESSFULLY = "Vehicle deleted successfully.";
 }
 
 
