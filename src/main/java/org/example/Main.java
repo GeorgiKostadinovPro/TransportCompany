@@ -20,7 +20,7 @@ public class Main {
                     7500.00
             );
 
-            companyService.createCompany(createDto);
+            companyService.create(createDto);
             System.out.println("Company created successfully!");
 
             // --- UPDATE ---
@@ -31,7 +31,7 @@ public class Main {
                     8000.00
             );
 
-            companyService.updateCompany(updateDto);
+            companyService.update(updateDto);
             System.out.println("Company updated successfully!");
 
             // --- DELETE ---

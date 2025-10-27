@@ -32,7 +32,7 @@ public class CompanyService implements ICompanyService {
     }
 
     @Override
-    public void createCompany(CreateCompanyDto dto) {
+    public void create(CreateCompanyDto dto) {
         validateDto(dto);
 
         Company company = new Company();
@@ -50,7 +50,7 @@ public class CompanyService implements ICompanyService {
     }
 
     @Override
-    public void updateCompany(UpdateCompanyDto dto) {
+    public void update(UpdateCompanyDto dto) {
         validateDto(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -73,7 +73,7 @@ public class CompanyService implements ICompanyService {
     }
 
     @Override
-    public void deleteCompany(long id) {
+    public void delete(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
