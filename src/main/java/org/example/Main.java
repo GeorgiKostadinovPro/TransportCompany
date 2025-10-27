@@ -123,6 +123,9 @@ public class Main {
 
             cargoService.create(createCargoDto);
             System.out.println("Cargo recorded successfully!");
+
+            boolean paid = clientService.hasClientPaidAllDebts(1L);
+            System.out.println("Client has paid all debts: " + paid);
         }
     }
 }

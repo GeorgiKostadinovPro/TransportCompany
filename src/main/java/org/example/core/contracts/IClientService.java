@@ -7,4 +7,6 @@ public interface IClientService {
     void create(CreateClientDto dto);
     void update(UpdateClientDto dto);
     void delete(long id);
+
+    boolean hasClientPaidAllDebts(long clientId);
 }

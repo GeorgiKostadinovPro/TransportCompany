@@ -2,6 +2,7 @@ package org.example.core;
 
 import org.example.core.contracts.IClientService;
 import org.example.data.configuration.SessionFactoryUtil;
+import org.example.data.entity.Cargo;
 import org.example.data.entity.Client;
 import org.example.data.entity.Company;
 import org.example.dto.client.CreateClientDto;
@@ -77,6 +78,17 @@ public class ClientService implements IClientService {
 
             session.delete(client);
             tx.commit();
+        }
+    }
+
+    public boolean hasClientPaidAllDebts(long clientId) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Client client = session.get(Client.class, clientId);
+            if (client == null) {
+                throw new IllegalArgumentException("Client not found!");
+            }
+
+            return client.getCargos().stream().allMatch(Cargo::getIsPaid);
         }
     }
 }
