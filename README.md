@@ -8,7 +8,7 @@
 </p>
 
 ### Commands I/O
-<a href="/src/main/java/org/example/commands_example.txt">commands_example.txt</a>
+<a href="https://github.com/GeorgiKostadinovPro/TransportCompany/blob/master/src/main/java/org/example/comands_example.txt">commands_example.txt</a>
 
 ### Features
 <ul>
