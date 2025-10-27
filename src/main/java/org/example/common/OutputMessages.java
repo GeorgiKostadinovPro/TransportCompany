@@ -38,4 +38,44 @@ public class OutputMessages {
     public static final String CARGO_WITH_DESTINATION = "Cargo #%s | destination %s";
     public static final String CARGO_COUNT_BY_COMPANY = "Total cargos for company #%s: %d cargo(s)";
     public static final String TOTAL_CARGO_REVENUE_BY_COMPANY = "Total revenue for company #%d: $%.f2";
+
+    ///   ENGINE
+    public static final String[] AVAILABLE_COMMANDS = {
+            // === COMPANY ===
+            "CreateCompany {name} {address} {foundationDate}",
+            "UpdateCompany {id} {name} {address}",
+            "DeleteCompany {id}",
+            "GetCompaniesSorted",
+            "GetCompanyRevenueForPeriod {companyId} {startDate} {endDate}",
+
+            // === EMPLOYEE ===
+            "CreateEmployee {name} {salary} {qualification} {companyId}",
+            "UpdateEmployee {id} {name} {salary} {qualification}",
+            "DeleteEmployee {id}",
+            "GetEmployeesByCompanySorted {companyId}",
+            "GetDriversWithCargoCountByCompany {companyId}",
+            "GetDriverRevenueByCompany {companyId}",
+
+            // === CLIENT ===
+            "CreateClient {name} {companyId}",
+            "UpdateClient {id} {name}",
+            "DeleteClient {id}",
+            "HasClientPaidAllDebts {clientId}",
+
+            // === VEHICLE ===
+            "CreateVehicle {registrationNumber} {type} {companyId}",
+            "UpdateVehicle {id} {registrationNumber} {type}",
+            "DeleteVehicle {id}",
+
+            // === CARGO ===
+            "CreateCargo {price} {isPaid} {weight} {origin} {destination} {departureDate} {arrivalDate} {type} {vehicleId} {driverId} {clientId} {companyId}",
+            "PayForCargo {cargoId}",
+            "GetCargoById {cargoId}",
+            "GetCargosByCompany {companyId}",
+            "GetCargoCountByCompany {companyId}",
+            "GetTotalCargoRevenueByCompany {companyId}",
+
+            // === GENERAL ===
+            "Stop"
+    };
 }

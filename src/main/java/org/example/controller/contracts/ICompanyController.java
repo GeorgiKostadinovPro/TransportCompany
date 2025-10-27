@@ -5,6 +5,6 @@ public interface ICompanyController {
     String update(String[] args);
     String delete(String[] args);
 
-    String getCompaniesSortedByNameAndRevenue();
+    String getSortedByNameAndRevenue();
     String getCompanyRevenueForPeriod(String[] args);
 }

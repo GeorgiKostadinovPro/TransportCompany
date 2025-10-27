@@ -52,7 +52,7 @@ public class CompanyController implements ICompanyController {
     }
 
     @Override
-    public String getCompaniesSortedByNameAndRevenue() {
+    public String getSortedByNameAndRevenue() {
         var companies = this.companyService.getSortedByNameAndRevenue();
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
