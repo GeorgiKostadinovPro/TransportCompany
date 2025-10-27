@@ -3,6 +3,7 @@ package org.example.dto.vehicle;
 import org.example.data.entity.enums.VehicleType;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -11,6 +12,7 @@ public class CreateVehicleDto {
     @Size(max = 50, message = "Registration number can have up to 50 characters!")
     private String registrationNumber;
 
+    @NotNull(message = "Vehicle type cannot be null!")
     private VehicleType type;
 
     @Positive(message = "Company ID must be a positive number!")

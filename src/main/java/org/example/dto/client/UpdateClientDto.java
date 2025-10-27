@@ -30,7 +30,6 @@ public class UpdateClientDto {
         this.hasPaid = hasPaid;
     }
 
-    // Getters and setters
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 

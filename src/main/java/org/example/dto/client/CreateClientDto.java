@@ -30,7 +30,6 @@ public class CreateClientDto {
         this.companyId = companyId;
     }
 
-    // Getters and setters
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 

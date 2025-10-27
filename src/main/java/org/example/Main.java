@@ -2,22 +2,25 @@ package org.example;
 
 import org.example.core.ClientService;
 import org.example.core.CompanyService;
+import org.example.core.EmployeeService;
 import org.example.core.VehicleService;
 import org.example.core.contracts.IClientService;
 import org.example.core.contracts.ICompanyService;
+import org.example.core.contracts.IEmployeeService;
 import org.example.core.contracts.IVehicleService;
 import org.example.data.configuration.SessionFactoryUtil;
+import org.example.data.entity.enums.DriverType;
 import org.example.data.entity.enums.VehicleType;
 import org.example.dto.client.CreateClientDto;
 import org.example.dto.client.UpdateClientDto;
 import org.example.dto.company.CreateCompanyDto;
 import org.example.dto.company.UpdateCompanyDto;
+import org.example.dto.employee.CreateEmployeeDto;
+import org.example.dto.employee.UpdateEmployeeDto;
 import org.example.dto.vehicle.CreateVehicleDto;
 import org.example.dto.vehicle.UpdateVehicleDto;
 import org.hibernate.Session;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -78,6 +81,29 @@ public class Main {
             vehicleService.update(updateVehicleDto);
 
             System.out.println("Vehicle operations completed successfully.");
+
+            ///  EMPLOYEE
+            IEmployeeService employeeService = new EmployeeService();
+
+            // Create employee in company id=1
+            CreateEmployeeDto createEmployeeDto = new CreateEmployeeDto(
+                    "John Doe",
+                    2500.0,
+                    DriverType.REGULAR,
+                    1L
+            );
+            employeeService.create(createEmployeeDto);
+
+            // Update employee with id=1
+            UpdateEmployeeDto updateEmployeeDto = new UpdateEmployeeDto(
+                    1L,
+                    "John Smith",
+                    2700.0,
+                    DriverType.SPECIAL_CARGO
+            );
+            employeeService.update(updateEmployeeDto);
+
+            System.out.println("Employee operations completed successfully.");
         }
     }
 }

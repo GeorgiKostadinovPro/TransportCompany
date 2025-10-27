@@ -2,6 +2,7 @@ package org.example.data.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.example.data.common.BaseEntityModel;
@@ -18,6 +19,7 @@ public class Vehicle extends BaseEntityModel {
     private String registrationNumber;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Vehicle type cannot be null!")
     private VehicleType type;
 
     @ManyToOne

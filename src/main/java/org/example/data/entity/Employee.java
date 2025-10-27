@@ -2,6 +2,7 @@ package org.example.data.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -14,14 +15,15 @@ import java.util.Set;
 @Entity
 @Table(name = "employees")
 public class Employee extends BaseEntityModel {
-    @NotBlank
-    @Size(max = 100)
+    @NotBlank(message = "Employee name cannot be blank!")
+    @Size(max = 100, message = "Employee name can have up to 100 characters!")
     private String name;
 
-    @Positive
+    @Positive(message = "Salary must be positive!")
     private double salary;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Driver type cannot be null!")
     @Column(name = "driver_type")
     private DriverType driverType;
 
@@ -31,7 +33,7 @@ public class Employee extends BaseEntityModel {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Cargo> cargos = new HashSet<>();
 
     public String getName() { return name; }
