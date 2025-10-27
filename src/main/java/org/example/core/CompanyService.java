@@ -5,35 +5,19 @@ import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Company;
 import org.example.dto.company.CreateCompanyDto;
 import org.example.dto.company.UpdateCompanyDto;
+import org.example.util.DtoValidator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.validation.*;
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class CompanyService implements ICompanyService {
-    private final Validator validator;
-
-    public CompanyService() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
-    }
-
-    private <T> void validateDto(T dto) {
-        Set<ConstraintViolation<T>> violations = validator.validate(dto);
-        if (!violations.isEmpty()) {
-            String msg = violations.stream()
-                    .map(v -> v.getPropertyPath() + " " + v.getMessage())
-                    .collect(Collectors.joining("; "));
-            throw new IllegalArgumentException("Validation failed: " + msg);
-        }
-    }
+    public CompanyService() {}
 
     @Override
     public void create(CreateCompanyDto dto) {
-        validateDto(dto);
+        DtoValidator.validate(dto);
 
         Company company = new Company();
         company.setName(dto.getName());
@@ -51,7 +35,7 @@ public class CompanyService implements ICompanyService {
 
     @Override
     public void update(UpdateCompanyDto dto) {
-        validateDto(dto);
+        DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();

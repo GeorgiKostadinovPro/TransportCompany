@@ -34,10 +34,7 @@ public class Main {
             companyService.update(updateDto);
             System.out.println("Company updated successfully!");
 
-            // --- DELETE ---
-            // Uncomment if you want to delete
-            // companyService.deleteCompany(1);
-            // System.out.println("Company deleted successfully!");
+
         }
     }
 }

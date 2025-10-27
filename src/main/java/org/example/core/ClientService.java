@@ -6,37 +6,19 @@ import org.example.data.entity.Client;
 import org.example.data.entity.Company;
 import org.example.dto.client.CreateClientDto;
 import org.example.dto.client.UpdateClientDto;
+import org.example.util.DtoValidator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.validation.*;
-
-import javax.validation.ConstraintViolation;
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ClientService implements IClientService {
-    private final Validator validator;
-
-    public ClientService() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        this.validator = factory.getValidator();
-    }
-
-    private <T> void validateDto(T dto) {
-        Set<ConstraintViolation<T>> violations = validator.validate(dto);
-        if (!violations.isEmpty()) {
-            String msg = violations.stream()
-                    .map(v -> v.getPropertyPath() + " " + v.getMessage())
-                    .collect(Collectors.joining("; "));
-            throw new IllegalArgumentException("Validation failed: " + msg);
-        }
-    }
+    public ClientService() {}
 
     @Override
     public void create(CreateClientDto dto) {
-        validateDto(dto);
+        DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
@@ -62,7 +44,7 @@ public class ClientService implements IClientService {
 
     @Override
     public void update(UpdateClientDto dto) {
-        validateDto(dto);
+        DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
