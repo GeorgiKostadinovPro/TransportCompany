@@ -21,7 +21,7 @@ public class UpdateClientDto {
 
     private boolean hasPaid;
 
-    public UpdateClientDto(long id, String name, String email, String phone, boolean hasPaid, long companyId) {
+    public UpdateClientDto(long id, String name, String email, String phone, boolean hasPaid) {
         this.id = id;
         this.name = name;
         this.email = email;
