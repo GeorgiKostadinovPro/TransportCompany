@@ -85,7 +85,7 @@ public class CargoDto {
         sb.append("Creation Date: ").append(DateFormatter.formatLocalDateTime(this.getCreationDate())).append("\n");
         sb.append("Price: $").append(this.getPrice()).append("\n");
         sb.append("Paid: ").append(this.getIsPaid()).append("\n");
-        sb.append("Weight: ").append(this.getWeight()).append("\n");
+        sb.append("Weight: ").append(this.getWeight()).append(" kg\n");
         sb.append("Origin: ").append(this.getOrigin()).append("\n");
         sb.append("Destination: ").append(this.getDestination()).append("\n");
         sb.append("Departure Date: ").append(DateFormatter.formatLocalDateTime(getDepartureDate())).append("\n");

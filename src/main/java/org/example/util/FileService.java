@@ -5,7 +5,7 @@ import org.example.dto.cargo.CargoDto;
 import java.io.*;
 
 public class FileService {
-    private static final String CARGO_FILE = "receiptsTracker/";
+    private static final String CARGO_FILE = "cargoTracker/";
 
     public FileService() {
         File folder = new File(CARGO_FILE);

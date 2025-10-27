@@ -74,9 +74,14 @@ public class CompanyService implements ICompanyService {
     @Override
     public List<Company> getSortedByNameAndRevenue() {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery(
+            Transaction tx = session.beginTransaction();
+
+            List<Company> companies = session.createQuery(
                     "FROM Company c ORDER BY c.name ASC, c.revenue DESC", Company.class
-            ).list();
+            ).getResultList();
+
+            tx.commit();
+            return companies;
         }
     }
 }

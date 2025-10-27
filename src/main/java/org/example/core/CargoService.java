@@ -3,6 +3,7 @@ package org.example.core;
 import org.example.core.contracts.ICargoService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.*;
+import org.example.dto.cargo.CargoDto;
 import org.example.dto.cargo.CreateCargoDto;
 import org.example.util.DtoValidator;
 import org.hibernate.Session;
@@ -70,10 +71,46 @@ public class CargoService implements ICargoService {
 
     public List<Cargo> getByCompanyIdAndSortByDestination(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Cargo c WHERE c.company.id = :companyId ORDER BY c.destination ASC";
-            return session.createQuery(hql, Cargo.class)
+            Transaction tx = session.beginTransaction();
+
+            List<Cargo> cargos = session.createQuery(
+                    "FROM Cargo c WHERE c.company.id = :companyId ORDER BY c.destination ASC", Cargo.class)
                     .setParameter("companyId", companyId)
                     .getResultList();
+
+            tx.commit();
+            return cargos;
+        }
+    }
+
+    @Override
+    public CargoDto getCargoById(long id) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            Cargo cargo = session.get(Cargo.class, id);
+            if (cargo == null) {
+                throw new IllegalArgumentException("Cargo with id " + id + " not found!");
+            }
+
+            tx.commit();
+
+            return new CargoDto(
+                    cargo.getId(),
+                    cargo.getCreationDate(),
+                    cargo.getPrice(),
+                    cargo.getIsPaid(),
+                    cargo.getWeight(),
+                    cargo.getOrigin(),
+                    cargo.getDestination(),
+                    cargo.getDepartureDate(),
+                    cargo.getArrivalDate(),
+                    cargo.getType(),
+                    cargo.getVehicle().getRegistrationNumber(),
+                    cargo.getDriver().getName(),
+                    cargo.getClient().getName(),
+                    cargo.getCompany().getName()
+            );
         }
     }
 }

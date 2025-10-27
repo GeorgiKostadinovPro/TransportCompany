@@ -9,6 +9,7 @@ import org.example.data.entity.Employee;
 import org.example.data.entity.enums.CargoType;
 import org.example.data.entity.enums.DriverType;
 import org.example.data.entity.enums.VehicleType;
+import org.example.dto.cargo.CargoDto;
 import org.example.dto.cargo.CreateCargoDto;
 import org.example.dto.client.CreateClientDto;
 import org.example.dto.client.UpdateClientDto;
@@ -18,6 +19,7 @@ import org.example.dto.employee.CreateEmployeeDto;
 import org.example.dto.employee.UpdateEmployeeDto;
 import org.example.dto.vehicle.CreateVehicleDto;
 import org.example.dto.vehicle.UpdateVehicleDto;
+import org.example.util.FileService;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;
@@ -154,7 +156,10 @@ public class Main {
             cargos.forEach(c -> System.out.println(c.getDestination()));
 
             ///  TASK 8
-
+            FileService fileService = new FileService();
+            CargoDto cargoDto = cargoService.getCargoById(1L);
+            fileService.saveCargoAsFile(cargoDto);
+            System.out.println(fileService.readCargoFromFile(1L));
         }
     }
 }

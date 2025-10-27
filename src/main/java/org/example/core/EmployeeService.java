@@ -81,13 +81,18 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public List<Employee> getByCompanyIdAndSortByQualificationAndSalary(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery(
+            Transaction tx = session.beginTransaction();
+
+            List<Employee> employees = session.createQuery(
                             "FROM Employee e " +
                                     "WHERE e.company.id = :companyId " +
                                     "ORDER BY e.driverType ASC, e.salary DESC", Employee.class
                     )
                     .setParameter("companyId", companyId)
-                    .list();
+                    .getResultList();
+
+            tx.commit();
+            return employees;
         }
     }
 }
