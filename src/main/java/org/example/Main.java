@@ -1,16 +1,12 @@
 package org.example;
 
-import org.example.core.ClientService;
-import org.example.core.CompanyService;
-import org.example.core.EmployeeService;
-import org.example.core.VehicleService;
-import org.example.core.contracts.IClientService;
-import org.example.core.contracts.ICompanyService;
-import org.example.core.contracts.IEmployeeService;
-import org.example.core.contracts.IVehicleService;
+import org.example.core.*;
+import org.example.core.contracts.*;
 import org.example.data.configuration.SessionFactoryUtil;
+import org.example.data.entity.enums.CargoType;
 import org.example.data.entity.enums.DriverType;
 import org.example.data.entity.enums.VehicleType;
+import org.example.dto.cargo.CreateCargoDto;
 import org.example.dto.client.CreateClientDto;
 import org.example.dto.client.UpdateClientDto;
 import org.example.dto.company.CreateCompanyDto;
@@ -20,6 +16,8 @@ import org.example.dto.employee.UpdateEmployeeDto;
 import org.example.dto.vehicle.CreateVehicleDto;
 import org.example.dto.vehicle.UpdateVehicleDto;
 import org.hibernate.Session;
+
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
@@ -104,6 +102,27 @@ public class Main {
             employeeService.update(updateEmployeeDto);
 
             System.out.println("Employee operations completed successfully.");
+
+            ///  CARGO
+            ICargoService cargoService = new CargoService();
+
+            CreateCargoDto createCargoDto = new CreateCargoDto(
+                    500.0,
+                    false,
+                    1000.0,
+                    "Sofia",
+                    "Plovdiv",
+                    LocalDateTime.now().plusHours(2),
+                    LocalDateTime.now().plusHours(5),
+                    CargoType.GOODS,
+                    1L,  // vehicleId
+                    1L,  // driverId
+                    1L,  // clientId
+                    1L   // companyId
+            );
+
+            cargoService.create(createCargoDto);
+            System.out.println("Cargo recorded successfully!");
         }
     }
 }

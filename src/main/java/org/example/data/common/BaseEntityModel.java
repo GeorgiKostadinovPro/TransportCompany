@@ -9,7 +9,7 @@ public abstract class BaseEntityModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", nullable = false)
     private LocalDateTime creationDate;
 
     @Column(name = "modified_date")

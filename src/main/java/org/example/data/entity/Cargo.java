@@ -1,8 +1,7 @@
 package org.example.data.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 
 import org.example.data.common.BaseEntityModel;
 import org.example.data.entity.enums.CargoType;
@@ -12,28 +11,33 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "cargos")
 public class Cargo extends BaseEntityModel {
-    @Positive
+    @Positive(message = "Price must be positive!")
     private double price;
     
     @Column(name = "is_paid")
     private boolean isPaid;
 
-    @Positive
+    @Positive(message = "Weight must be positive!")
     private double weight;
 
-    @NotBlank
+    @NotBlank(message = "Origin cannot be blank!")
+    @Size(max = 100, message = "Origin can have up to 100 characters!")
     private String origin;
 
-    @NotBlank
+    @NotBlank(message = "Destination cannot be blank!")
+    @Size(max = 100, message = "Destination can have up to 100 characters!")
     private String destination;
 
-    @Column(name = "departure_date")
+    @Column(name = "departure_date", nullable = false)
+    @FutureOrPresent(message = "Departure date cannot be in the past!")
     private LocalDateTime departureDate;
 
-    @Column(name = "arrival_date")
+    @Column(name = "arrival_date", nullable = false)
+    @Future(message = "Arrival date must be in the future!")
     private LocalDateTime arrivalDate;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Cargo type cannot be null!")
     private CargoType type;
 
     @ManyToOne
@@ -84,4 +88,7 @@ public class Cargo extends BaseEntityModel {
 
     public Client getClient() { return client; }
     public void setClient(Client client) { this.client = client; }
+
+    public Company getCompany() { return company; }
+    public void setCompany(Company company) { this.company = company; }
 }
