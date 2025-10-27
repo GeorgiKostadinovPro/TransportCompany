@@ -7,6 +7,7 @@ import org.example.data.entity.Cargo;
 import org.example.data.entity.enums.CargoType;
 import org.example.dto.cargo.CargoDto;
 import org.example.dto.cargo.CreateCargoDto;
+import org.example.util.FileService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.StringJoiner;
 import static org.example.common.OutputMessages.*;
 
 public class CargoController implements ICargoController {
+    private final FileService fileService;
     private final ICargoService cargoService;
 
     public CargoController() {
+        this.fileService = new FileService();
         this.cargoService = new CargoService();
     }
 
@@ -54,6 +57,25 @@ public class CargoController implements ICargoController {
         this.cargoService.payForCargo(id);
 
         return CARGO_PAYMENT_COMPLETED;
+    }
+
+    @Override
+    public String saveCargoToFile(String[] args) {
+        long cargoId = Long.parseLong(args[0]);
+
+        CargoDto cargo = this.cargoService.getById(cargoId);
+        this.fileService.saveCargoAsFile(cargo);
+
+        return String.format(CARGO_SAVED_TO_FILE_SUCCESSFULLY, cargoId);
+    }
+
+    @Override
+    public String readCargoFromFile(String[] args) {
+        long cargoId = Long.parseLong(args[0]);
+
+        String content = this.fileService.readCargoFromFile(cargoId);
+
+        return String.format(CARGO_CONTENT_FROM_FILE, cargoId, content);
     }
 
     @Override

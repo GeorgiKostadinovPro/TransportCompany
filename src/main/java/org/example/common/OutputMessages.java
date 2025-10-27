@@ -35,6 +35,9 @@ public class OutputMessages {
     public static final String CARGO_CREATED_SUCCESSFULLY = "Cargo created successfully.";
     public static final String CARGO_PAYMENT_COMPLETED = "Cargo payment marked as completed.";
 
+    public static final String CARGO_SAVED_TO_FILE_SUCCESSFULLY = "Cargo #%d saved to file successfully.";
+    public static final String CARGO_CONTENT_FROM_FILE = "Cargo #%d content:\n%s";
+
     public static final String CARGO_WITH_DESTINATION = "Cargo #%s | destination %s";
     public static final String CARGO_COUNT_BY_COMPANY = "Total cargos for company #%s: %d cargo(s)";
     public static final String TOTAL_CARGO_REVENUE_BY_COMPANY = "Total revenue for company #%d: $%.f2";
@@ -70,6 +73,8 @@ public class OutputMessages {
             // === CARGO ===
             "CreateCargo {price} {isPaid} {weight} {origin} {destination} {departureDate} {arrivalDate} {type} {vehicleId} {driverId} {clientId} {companyId}",
             "PayForCargo {cargoId}",
+            "SaveCargoToFile {cargoId}",
+            "ReadCargoFromFile {cargoId}",
             "GetCargoById {cargoId}",
             "GetCargosByCompany {companyId}",
             "GetCargoCountByCompany {companyId}",

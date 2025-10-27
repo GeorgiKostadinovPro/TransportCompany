@@ -4,6 +4,9 @@ public interface ICargoController {
     String create(String[] args);
     String payForCargo(String[] args);
 
+    String saveCargoToFile(String[] args);
+    String readCargoFromFile(String[] args);
+
     String getById(String[] args);
     String getByCompanyAndSortByDestination(String[] args);
     String getCountByCompany(String[] args);

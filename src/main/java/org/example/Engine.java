@@ -102,6 +102,8 @@ public class Engine implements Runnable {
             // === CARGO COMMANDS ===
             case "CreateCargo" -> this.cargoController.create(args);
             case "PayForCargo" -> this.cargoController.payForCargo(args);
+            case "SaveCargoToFile" -> this.cargoController.saveCargoToFile(args);
+            case "ReadCargoFromFile" -> this.cargoController.readCargoFromFile(args);
             case "GetCargoById" -> this.cargoController.getById(args);
             case "GetCargoCountByCompany" -> this.cargoController.getCountByCompany(args);
             case "GetCargosByCompany" -> this.cargoController.getByCompanyAndSortByDestination(args);
