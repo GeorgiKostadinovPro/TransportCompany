@@ -13,6 +13,8 @@ import javax.validation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
+
 public class CompanyService implements ICompanyService {
     public CompanyService() {}
 
@@ -43,7 +45,7 @@ public class CompanyService implements ICompanyService {
 
             Company company = session.get(Company.class, dto.getId());
             if (company == null) {
-                throw new IllegalArgumentException("Company with id " + dto.getId() + " not found.");
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             company.setName(dto.getName());
@@ -63,7 +65,7 @@ public class CompanyService implements ICompanyService {
 
             Company company = session.get(Company.class, id);
             if (company == null) {
-                throw new IllegalArgumentException("Company with id " + id + " not found.");
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             session.delete(company);
@@ -82,6 +84,29 @@ public class CompanyService implements ICompanyService {
 
             tx.commit();
             return companies;
+        }
+    }
+
+    @Override
+    public double getCompanyRevenueForPeriod(long companyId, LocalDateTime startDate, LocalDateTime endDate) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            double revenue = session
+                    .createQuery(
+                    """
+                        SELECT COALESCE(SUM(c.price), 0)
+                        FROM Cargo c
+                        WHERE c.company.id = :companyId
+                        AND c.departureDate BETWEEN :startDate AND :endDate
+                       """, Double.class)
+                    .setParameter("companyId", companyId)
+                    .setParameter("startDate", startDate)
+                    .setParameter("endDate", endDate)
+                    .getSingleResult();
+
+            tx.commit();
+            return revenue;
         }
     }
 }

@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 
 import java.time.LocalDateTime;
 
+import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
+
 public class VehicleService implements IVehicleService {
     public VehicleService() {}
 
@@ -24,7 +26,7 @@ public class VehicleService implements IVehicleService {
 
             Company company = session.get(Company.class, dto.getCompanyId());
             if (company == null) {
-                throw new IllegalArgumentException("Company not found with id: " + dto.getCompanyId());
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             Vehicle vehicle = new Vehicle();
@@ -48,7 +50,7 @@ public class VehicleService implements IVehicleService {
 
             Vehicle vehicle = session.get(Vehicle.class, dto.getId());
             if (vehicle == null) {
-                throw new IllegalArgumentException("Vehicle not found with id: " + dto.getId());
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             vehicle.setRegistrationNumber(dto.getRegistrationNumber());
@@ -67,7 +69,7 @@ public class VehicleService implements IVehicleService {
 
             Vehicle vehicle = session.get(Vehicle.class, id);
             if (vehicle == null) {
-                throw new IllegalArgumentException("Vehicle not found with id: " + id);
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             session.delete(vehicle);

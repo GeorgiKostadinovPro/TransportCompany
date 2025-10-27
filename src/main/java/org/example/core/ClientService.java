@@ -14,6 +14,8 @@ import org.hibernate.Transaction;
 import javax.validation.*;
 import java.time.LocalDateTime;
 
+import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
+
 public class ClientService implements IClientService {
     public ClientService() {}
 
@@ -26,7 +28,7 @@ public class ClientService implements IClientService {
 
             Company company = session.get(Company.class, dto.getCompanyId());
             if (company == null) {
-                throw new IllegalArgumentException("Company not found with id: " + dto.getCompanyId());
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             Client client = new Client();
@@ -52,7 +54,7 @@ public class ClientService implements IClientService {
 
             Client client = session.get(Client.class, dto.getId());
             if (client == null) {
-                throw new IllegalArgumentException("Client not found with id: " + dto.getId());
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             client.setName(dto.getName());
@@ -73,7 +75,7 @@ public class ClientService implements IClientService {
 
             Client client = session.get(Client.class, id);
             if (client == null) {
-                throw new IllegalArgumentException("Client not found with id: " + id);
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             session.delete(client);
@@ -85,7 +87,7 @@ public class ClientService implements IClientService {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Client client = session.get(Client.class, clientId);
             if (client == null) {
-                throw new IllegalArgumentException("Client not found!");
+                throw new IllegalArgumentException(INVALID_ENTITY_ID);
             }
 
             return client.getCargos().stream().allMatch(Cargo::getIsPaid);
