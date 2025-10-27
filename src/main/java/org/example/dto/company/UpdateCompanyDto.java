@@ -3,6 +3,7 @@ package org.example.dto.company;
 import javax.validation.constraints.*;
 
 public class UpdateCompanyDto {
+    @Positive(message = "ID must be a positive number!")
     private long id;
 
     @NotBlank(message = "Company name cannot be blank!")

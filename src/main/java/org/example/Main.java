@@ -2,13 +2,18 @@ package org.example;
 
 import org.example.core.ClientService;
 import org.example.core.CompanyService;
+import org.example.core.VehicleService;
 import org.example.core.contracts.IClientService;
 import org.example.core.contracts.ICompanyService;
+import org.example.core.contracts.IVehicleService;
 import org.example.data.configuration.SessionFactoryUtil;
+import org.example.data.entity.enums.VehicleType;
 import org.example.dto.client.CreateClientDto;
 import org.example.dto.client.UpdateClientDto;
 import org.example.dto.company.CreateCompanyDto;
 import org.example.dto.company.UpdateCompanyDto;
+import org.example.dto.vehicle.CreateVehicleDto;
+import org.example.dto.vehicle.UpdateVehicleDto;
 import org.hibernate.Session;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -55,6 +60,24 @@ public class Main {
                     true);
             clientService.update(updateClientDto);
             System.out.println("Client updated successfully!");
+
+            ///  VEHICLE
+            IVehicleService vehicleService = new VehicleService();
+
+            // --- Create a vehicle for company id = 1 ---
+            CreateVehicleDto createVehicleDto = new CreateVehicleDto(
+                    "CA1234AA",
+                    VehicleType.TRUCK,
+                    1L);
+            vehicleService.create(createVehicleDto);
+
+            UpdateVehicleDto updateVehicleDto = new UpdateVehicleDto(
+                    1L,
+                    "CA5678BB",
+                    VehicleType.BUS);
+            vehicleService.update(updateVehicleDto);
+
+            System.out.println("Vehicle operations completed successfully.");
         }
     }
 }

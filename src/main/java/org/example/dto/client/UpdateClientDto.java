@@ -3,6 +3,7 @@ package org.example.dto.client;
 import javax.validation.constraints.*;
 
 public class UpdateClientDto {
+    @Positive(message = "ID must be a positive number!")
     private long id;
 
     @NotBlank(message = "Client name cannot be blank!")
