@@ -45,8 +45,8 @@ public class OutputMessages {
     ///   ENGINE
     public static final String[] AVAILABLE_COMMANDS = {
             // === COMPANY ===
-            "CreateCompany {name} {address} {foundationDate}",
-            "UpdateCompany {id} {name} {address}",
+            "CreateCompany {name} {address} {revenue}",
+            "UpdateCompany {id} {name} {address} {revenue}",
             "DeleteCompany {id}",
             "GetCompaniesSorted",
             "GetCompanyRevenueForPeriod {companyId} {startDate} {endDate}",
@@ -76,7 +76,7 @@ public class OutputMessages {
             "SaveCargoToFile {cargoId}",
             "ReadCargoFromFile {cargoId}",
             "GetCargoById {cargoId}",
-            "GetCargosByCompany {companyId}",
+            "GetCargosByCompanySorted {companyId}",
             "GetCargoCountByCompany {companyId}",
             "GetTotalCargoRevenueByCompany {companyId}",
 

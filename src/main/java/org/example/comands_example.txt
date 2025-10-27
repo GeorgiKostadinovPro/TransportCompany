@@ -1,0 +1,40 @@
+# === COMPANY CRUD ===
+CreateCompany ACME_Transport Sofia 50000
+UpdateCompany 1 ACME_Transport Plovdiv 55000
+DeleteCompany 1
+GetCompaniesSorted
+GetCompanyRevenueForPeriod 1 2025-01-01T00:00 2025-12-31T23:59
+
+# === EMPLOYEE CRUD ===
+CreateEmployee Ivan_Petrov REGULAR 3500 1
+UpdateEmployee 1 Ivan_Petrov SPECIAL_CARGO 4500
+DeleteEmployee 1
+GetEmployeesByCompanyAndSorted 1
+GetDriversWithCargoCountByCompany 1
+GetDriverRevenueByCompany 1
+
+# === CLIENT CRUD ===
+CreateClient John_Doe 1
+UpdateClient 1 John_Doe_Updated
+DeleteClient 1
+HasClientPaidAllDebts 1
+
+# === VEHICLE CRUD ===
+CreateVehicle AB1234CD TRUCK 1
+UpdateVehicle 1 AB1234CD BUS
+DeleteVehicle 1
+
+# === CARGO SETUP ===
+CreateCargo 1200.50 false 500.0 Sofia Plovdiv 2025-11-01T08:00 2025-11-02T18:00 GOODS 1 1 1 1
+PayForCargo 1
+GetCargoById 1
+GetCargoCountByCompany 1
+GetCargosByCompanySorted 1
+GetTotalCargoRevenueByCompany 1
+
+# === FILE OPERATIONS ===
+SaveCargoToFile 1
+ReadCargoFromFile 1
+
+# === STOP APPLICATION ===
+Stop

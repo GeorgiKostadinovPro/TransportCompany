@@ -106,7 +106,7 @@ public class Engine implements Runnable {
             case "ReadCargoFromFile" -> this.cargoController.readCargoFromFile(args);
             case "GetCargoById" -> this.cargoController.getById(args);
             case "GetCargoCountByCompany" -> this.cargoController.getCountByCompany(args);
-            case "GetCargosByCompany" -> this.cargoController.getByCompanyAndSortByDestination(args);
+            case "GetCargosByCompanySorted" -> this.cargoController.getByCompanyAndSortByDestination(args);
             case "GetTotalCargoRevenueByCompany" -> this.cargoController.getTotalRevenueByCompany(args);
 
             // === GENERAL ===

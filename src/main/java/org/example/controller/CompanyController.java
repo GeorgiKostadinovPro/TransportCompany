@@ -1,6 +1,5 @@
 package org.example.controller;
 
-
 import org.example.controller.contracts.ICompanyController;
 import org.example.core.CompanyService;
 import org.example.core.contracts.ICompanyService;
