@@ -73,8 +73,8 @@ public class CargoService implements ICargoService {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            List<Cargo> cargos = session.createQuery(
-                    "FROM Cargo c WHERE c.company.id = :companyId ORDER BY c.destination ASC", Cargo.class)
+            List<Cargo> cargos = session
+                    .createQuery("FROM Cargo c WHERE c.company.id = :companyId ORDER BY c.destination ASC", Cargo.class)
                     .setParameter("companyId", companyId)
                     .getResultList();
 
@@ -111,6 +111,21 @@ public class CargoService implements ICargoService {
                     cargo.getClient().getName(),
                     cargo.getCompany().getName()
             );
+        }
+    }
+
+    @Override
+    public long getCountByCompanyId(long companyId) {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            long total = session
+                    .createQuery("SELECT COUNT(c) FROM Cargo c WHERE c.company.id = :companyId", Long.class)
+                    .setParameter("companyId", companyId)
+                    .getSingleResult();
+
+            tx.commit();
+            return total;
         }
     }
 }

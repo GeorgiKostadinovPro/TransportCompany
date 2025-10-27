@@ -12,4 +12,5 @@ public interface ICargoService {
 
     CargoDto getCargoById(long id);
     List<Cargo> getByCompanyIdAndSortByDestination(long companyId);
+    long getCountByCompanyId(long companyId);
 }

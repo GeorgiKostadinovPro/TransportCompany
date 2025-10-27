@@ -76,9 +76,9 @@ public class CompanyService implements ICompanyService {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            List<Company> companies = session.createQuery(
-                    "FROM Company c ORDER BY c.name ASC, c.revenue DESC", Company.class
-            ).getResultList();
+            List<Company> companies = session
+                    .createQuery("FROM Company c ORDER BY c.name ASC, c.revenue DESC", Company.class)
+                    .getResultList();
 
             tx.commit();
             return companies;

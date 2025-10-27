@@ -83,7 +83,8 @@ public class EmployeeService implements IEmployeeService {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            List<Employee> employees = session.createQuery(
+            List<Employee> employees = session
+                    .createQuery(
                             "FROM Employee e " +
                                     "WHERE e.company.id = :companyId " +
                                     "ORDER BY e.driverType ASC, e.salary DESC", Employee.class
