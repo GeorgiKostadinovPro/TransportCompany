@@ -52,7 +52,7 @@ public class Engine implements Runnable {
 
     private void printWelcomeScreen() {
         StringBuilder sb = new StringBuilder();
-        System.out.println("=== Welcome to Transport Company Management System ===");
+        System.out.println("\n=== Welcome to Transport Company Management System ===");
         System.out.println("Type a command (or 'Stop' to exit).");
         sb.append("Available Commands:\n");
 

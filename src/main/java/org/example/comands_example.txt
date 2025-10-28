@@ -6,7 +6,7 @@ GetCompaniesSorted
 GetCompanyRevenueForPeriod 1 2025-01-01T00:00 2025-12-31T23:59
 
 # === EMPLOYEE CRUD ===
-CreateEmployee Ivan_Petrov REGULAR 3500 1
+CreateEmployee Ivan_Petrov 3500 REGULAR 1
 UpdateEmployee 1 Ivan_Petrov SPECIAL_CARGO 4500
 DeleteEmployee 1
 GetEmployeesByCompanyAndSorted 1
@@ -14,8 +14,8 @@ GetDriversWithCargoCountByCompany 1
 GetDriverRevenueByCompany 1
 
 # === CLIENT CRUD ===
-CreateClient John_Doe 1
-UpdateClient 1 John_Doe_Updated
+CreateClient John_Doe john@abv.bg 0897766487 1
+UpdateClient 1 John_Doe_Updated john@abv.bg 0897766487
 DeleteClient 1
 HasClientPaidAllDebts 1
 

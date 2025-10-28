@@ -10,7 +10,7 @@ public class Main {
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         session.close();
 
-        /// CONSOLE UI
+        /// CONSOLE UI & APPLICATION COMMANDS
         Engine engine = new Engine();
         engine.run();
     }

@@ -16,12 +16,18 @@ public class FileService {
     }
 
     public void saveCargoAsFile(CargoDto cargo) {
-        String fileName = CARGO_FILE + "cargo_" + cargo.getId() + ".txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write(cargo.toString());
-        } catch (IOException e) {
-            System.err.println("Error saving cargo to file: " + e.getMessage());
-        }
+        new Thread(() -> {
+            try {
+                Thread.sleep(10000);
+                String fileName = CARGO_FILE + "cargo_" + cargo.getId() + ".txt";
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                    writer.write(cargo.toString());
+                }
+                System.out.println("Cargo " + cargo.getId() + " saved successfully!");
+            } catch (Exception e) {
+                System.err.println("Error saving cargo in background: " + e.getMessage());
+            }
+        }).start();
     }
 
     public String readCargoFromFile(long id) {

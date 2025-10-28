@@ -10,9 +10,9 @@ public class OutputMessages {
     public static final String COMPANY_REVENUE_FOR_PERIOD = "Company ID #%s | revenue for the period: $%.2f";
 
     ///  CLIENT
-    public static final String CLIENT_CREATED_SUCCESSFULLY = "Company created successfully.";
-    public static final String CLIENT_UPDATED_SUCCESSFULLY = "Company updated successfully.";
-    public static final String CLIENT_DELETED_SUCCESSFULLY = "Company deleted successfully.";
+    public static final String CLIENT_CREATED_SUCCESSFULLY = "Client created successfully.";
+    public static final String CLIENT_UPDATED_SUCCESSFULLY = "Client updated successfully.";
+    public static final String CLIENT_DELETED_SUCCESSFULLY = "Client deleted successfully.";
 
     public static final String CLIENT_PAID_DEBTS = "Client has paid all debts.";
     public static final String CLIENT_NOT_PAID_DEBTS = "Client still has unpaid debts.";
@@ -35,7 +35,7 @@ public class OutputMessages {
     public static final String CARGO_CREATED_SUCCESSFULLY = "Cargo created successfully.";
     public static final String CARGO_PAYMENT_COMPLETED = "Cargo payment marked as completed.";
 
-    public static final String CARGO_SAVED_TO_FILE_SUCCESSFULLY = "Cargo #%d saved to file successfully.";
+    public static final String CARGO_SAVING_BEGAN = "Saving cargo %d in background (wait 5s)... You can continue using the app.";
     public static final String CARGO_CONTENT_FROM_FILE = "Cargo #%d content:\n%s";
 
     public static final String CARGO_WITH_DESTINATION = "Cargo #%s | destination %s";
@@ -60,8 +60,8 @@ public class OutputMessages {
             "GetDriverRevenueByCompany {companyId}",
 
             // === CLIENT ===
-            "CreateClient {name} {companyId}",
-            "UpdateClient {id} {name}",
+            "CreateClient {name} {email} {phone} {companyId}",
+            "UpdateClient {id} {name} {email} {phone}",
             "DeleteClient {id}",
             "HasClientPaidAllDebts {clientId}",
 

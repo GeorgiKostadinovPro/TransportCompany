@@ -66,7 +66,7 @@ public class CargoController implements ICargoController {
         CargoDto cargo = this.cargoService.getById(cargoId);
         this.fileService.saveCargoAsFile(cargo);
 
-        return String.format(CARGO_SAVED_TO_FILE_SUCCESSFULLY, cargoId);
+        return String.format(CARGO_SAVING_BEGAN, cargoId);
     }
 
     @Override
