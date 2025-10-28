@@ -18,6 +18,6 @@
    a. For companies by name and revenue.
    b. For employees by qualification and salary.
    c. For transports by destination.
-8. Saving transport data in a file and the ability to retrieve and
+8. Saving transport data in a file (Multithreading) and ability to retrieve and
    display this data.
 9. Display reports for the total number of transportations performed, the total amount of transportations performed, a list of drivers and how many transportations each of them has performed, the company's revenue for a certain period of time, how much revenue each of the drivers has, etc.

@@ -35,7 +35,7 @@ public class OutputMessages {
     public static final String CARGO_CREATED_SUCCESSFULLY = "Cargo created successfully.";
     public static final String CARGO_PAYMENT_COMPLETED = "Cargo payment marked as completed.";
 
-    public static final String CARGO_SAVING_BEGAN = "Saving cargo %d in background (wait 5s)... You can continue using the app.";
+    public static final String CARGO_SAVING_BEGAN = "Saving cargo %d in background (10s)... You can continue using the app.";
     public static final String CARGO_CONTENT_FROM_FILE = "Cargo #%d content:\n%s";
 
     public static final String CARGO_WITH_DESTINATION = "Cargo #%s | destination %s";
