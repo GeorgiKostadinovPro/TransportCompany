@@ -1,6 +1,5 @@
 package org.example.core;
 
-import org.example.core.contracts.ICargoService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.*;
 import org.example.dto.cargo.CargoDto;
@@ -14,11 +13,8 @@ import java.util.List;
 
 import static org.example.common.ExceptionMessages.*;
 
-public class CargoService implements ICargoService {
-    public CargoService() {}
-
-    @Override
-    public void create(CreateCargoDto dto) {
+public class CargoDao {
+    public static void create(CreateCargoDto dto) {
         DtoValidator.validate(dto);
 
         try(Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -54,7 +50,7 @@ public class CargoService implements ICargoService {
         }
     }
 
-    public void payForCargo(long cargoId) {
+    public static void payForCargo(long cargoId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -71,8 +67,7 @@ public class CargoService implements ICargoService {
         }
     }
 
-    @Override
-    public CargoDto getById(long id) {
+    public static CargoDto getById(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -102,8 +97,7 @@ public class CargoService implements ICargoService {
         }
     }
 
-    @Override
-    public List<Cargo> getByCompanyIdAndSortByDestination(long companyId) {
+    public static List<Cargo> getByCompanyIdAndSortByDestination(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -117,8 +111,7 @@ public class CargoService implements ICargoService {
         }
     }
 
-    @Override
-    public long getCountByCompanyId(long companyId) {
+    public static long getCountByCompanyId(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -132,8 +125,7 @@ public class CargoService implements ICargoService {
         }
     }
 
-    @Override
-    public double getTotalRevenueByCompanyId(long companyId) {
+    public static double getTotalRevenueByCompanyId(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 

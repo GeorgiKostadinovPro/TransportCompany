@@ -25,7 +25,7 @@ UpdateVehicle 1 AB1234CD BUS
 DeleteVehicle 1
 
 # === CARGO SETUP ===
-CreateCargo 1200.50 false 500.0 Sofia Plovdiv 2025-11-01T08:00 2025-11-02T18:00 GOODS 1 1 1 1
+CreateCargo 1200.50 false 500.0 Sofia Plovdiv 2025-11-20T08:00 2025-11-30T18:00 GOODS 1 1 1 1
 PayForCargo 1
 GetCargoById 1
 GetCargoCountByCompany 1

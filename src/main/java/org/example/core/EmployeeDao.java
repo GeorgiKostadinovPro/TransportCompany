@@ -1,6 +1,5 @@
 package org.example.core;
 
-import org.example.core.contracts.IEmployeeService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Company;
 import org.example.data.entity.Employee;
@@ -17,11 +16,8 @@ import java.util.List;
 
 import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
 
-public class EmployeeService implements IEmployeeService {
-    public EmployeeService() {}
-
-    @Override
-    public void create(CreateEmployeeDto dto) {
+public class EmployeeDao {
+    public static void create(CreateEmployeeDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -45,8 +41,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    @Override
-    public void update(UpdateEmployeeDto dto) {
+    public static void update(UpdateEmployeeDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -67,8 +62,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    @Override
-    public void delete(long id) {
+    public static void delete(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -82,8 +76,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    @Override
-    public List<Employee> getByCompanyIdAndSortByQualificationAndSalary(long companyId) {
+    public static List<Employee> getByCompanyIdAndSortByQualificationAndSalary(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -101,8 +94,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    @Override
-    public List<DriverWithCargoCountDto> getDriversWithCargoCountByCompanyId(long companyId) {
+    public static List<DriverWithCargoCountDto> getDriversWithCargoCountByCompanyId(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -124,8 +116,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    @Override
-    public List<DriverWithTotalRevenueDto> getDriverRevenueByCompanyId(long companyId) {
+    public static List<DriverWithTotalRevenueDto> getDriverRevenueByCompanyId(long companyId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 

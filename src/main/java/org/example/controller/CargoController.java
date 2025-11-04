@@ -1,8 +1,7 @@
 package org.example.controller;
 
 import org.example.controller.contracts.ICargoController;
-import org.example.core.CargoService;
-import org.example.core.contracts.ICargoService;
+import org.example.core.CargoDao;
 import org.example.data.entity.Cargo;
 import org.example.data.entity.enums.CargoType;
 import org.example.dto.cargo.CargoDto;
@@ -17,11 +16,9 @@ import static org.example.common.OutputMessages.*;
 
 public class CargoController implements ICargoController {
     private final FileService fileService;
-    private final ICargoService cargoService;
 
     public CargoController() {
         this.fileService = new FileService();
-        this.cargoService = new CargoService();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class CargoController implements ICargoController {
                 vehicleId, driverId, clientId, companyId
         );
 
-        this.cargoService.create(dto);
+        CargoDao.create(dto);
 
         return CARGO_CREATED_SUCCESSFULLY;
     }
@@ -54,7 +51,7 @@ public class CargoController implements ICargoController {
     public String payForCargo(String[] args) {
         long id = Long.parseLong(args[0]);
 
-        this.cargoService.payForCargo(id);
+        CargoDao.payForCargo(id);
 
         return CARGO_PAYMENT_COMPLETED;
     }
@@ -63,7 +60,7 @@ public class CargoController implements ICargoController {
     public String saveCargoToFile(String[] args) {
         long cargoId = Long.parseLong(args[0]);
 
-        CargoDto cargo = this.cargoService.getById(cargoId);
+        CargoDto cargo = CargoDao.getById(cargoId);
         this.fileService.saveCargoAsFile(cargo);
 
         return String.format(CARGO_SAVING_BEGAN, cargoId);
@@ -82,7 +79,7 @@ public class CargoController implements ICargoController {
     public String getById(String[] args) {
         long id = Long.parseLong(args[0]);
 
-        CargoDto cargo = this.cargoService.getById(id);
+        CargoDto cargo = CargoDao.getById(id);
 
         return cargo.toString();
     }
@@ -91,7 +88,7 @@ public class CargoController implements ICargoController {
     public String getByCompanyAndSortByDestination(String[] args) {
         long companyId = Long.parseLong(args[0]);
 
-        List<Cargo> cargos = this.cargoService
+        List<Cargo> cargos = CargoDao
                 .getByCompanyIdAndSortByDestination(companyId);
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
@@ -106,7 +103,7 @@ public class CargoController implements ICargoController {
     public String getCountByCompany(String[] args) {
         long companyId = Long.parseLong(args[0]);
 
-        long count = this.cargoService.getCountByCompanyId(companyId);
+        long count = CargoDao.getCountByCompanyId(companyId);
 
         return String.format(CARGO_COUNT_BY_COMPANY, companyId, count);
     }
@@ -115,7 +112,7 @@ public class CargoController implements ICargoController {
     public String getTotalRevenueByCompany(String[] args) {
         long companyId = Long.parseLong(args[0]);
 
-        double totalRevenue = this.cargoService.getTotalRevenueByCompanyId(companyId);
+        double totalRevenue = CargoDao.getTotalRevenueByCompanyId(companyId);
 
         return String.format(TOTAL_CARGO_REVENUE_BY_COMPANY, companyId, totalRevenue);
     }

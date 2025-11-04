@@ -1,6 +1,5 @@
 package org.example.core;
 
-import org.example.core.contracts.IVehicleService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Company;
 import org.example.data.entity.Vehicle;
@@ -14,11 +13,8 @@ import java.time.LocalDateTime;
 
 import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
 
-public class VehicleService implements IVehicleService {
-    public VehicleService() {}
-
-    @Override
-    public void create(CreateVehicleDto dto) {
+public class VehicleDao {
+    public static void create(CreateVehicleDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -41,8 +37,7 @@ public class VehicleService implements IVehicleService {
         }
     }
 
-    @Override
-    public void update(UpdateVehicleDto dto) {
+    public static void update(UpdateVehicleDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -62,8 +57,7 @@ public class VehicleService implements IVehicleService {
         }
     }
 
-    @Override
-    public void delete(long id) {
+    public static void delete(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 

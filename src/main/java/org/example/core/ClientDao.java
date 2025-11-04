@@ -1,6 +1,5 @@
 package org.example.core;
 
-import org.example.core.contracts.IClientService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Cargo;
 import org.example.data.entity.Client;
@@ -11,16 +10,12 @@ import org.example.util.DtoValidator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.validation.*;
 import java.time.LocalDateTime;
 
 import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
 
-public class ClientService implements IClientService {
-    public ClientService() {}
-
-    @Override
-    public void create(CreateClientDto dto) {
+public class ClientDao {
+    public static void create(CreateClientDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -45,8 +40,7 @@ public class ClientService implements IClientService {
         }
     }
 
-    @Override
-    public void update(UpdateClientDto dto) {
+    public static void update(UpdateClientDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -68,8 +62,7 @@ public class ClientService implements IClientService {
         }
     }
 
-    @Override
-    public void delete(long id) {
+    public static void delete(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -83,7 +76,7 @@ public class ClientService implements IClientService {
         }
     }
 
-    public boolean hasClientPaidAllDebts(long clientId) {
+    public static boolean hasClientPaidAllDebts(long clientId) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Client client = session.get(Client.class, clientId);
             if (client == null) {

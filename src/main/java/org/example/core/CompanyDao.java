@@ -1,6 +1,5 @@
 package org.example.core;
 
-import org.example.core.contracts.ICompanyService;
 import org.example.data.configuration.SessionFactoryUtil;
 import org.example.data.entity.Company;
 import org.example.dto.company.CreateCompanyDto;
@@ -9,17 +8,13 @@ import org.example.util.DtoValidator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.validation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.example.common.ExceptionMessages.INVALID_ENTITY_ID;
 
-public class CompanyService implements ICompanyService {
-    public CompanyService() {}
-
-    @Override
-    public void create(CreateCompanyDto dto) {
+public class CompanyDao {
+    public static void create(CreateCompanyDto dto) {
         DtoValidator.validate(dto);
 
         Company company = new Company();
@@ -36,8 +31,7 @@ public class CompanyService implements ICompanyService {
         }
     }
 
-    @Override
-    public void update(UpdateCompanyDto dto) {
+    public static void update(UpdateCompanyDto dto) {
         DtoValidator.validate(dto);
 
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
@@ -58,8 +52,7 @@ public class CompanyService implements ICompanyService {
         }
     }
 
-    @Override
-    public void delete(long id) {
+    public static void delete(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -73,8 +66,7 @@ public class CompanyService implements ICompanyService {
         }
     }
 
-    @Override
-    public List<Company> getSortedByNameAndRevenue() {
+    public static List<Company> getSortedByNameAndRevenue() {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
@@ -87,8 +79,7 @@ public class CompanyService implements ICompanyService {
         }
     }
 
-    @Override
-    public double getCompanyRevenueForPeriod(long companyId, LocalDateTime startDate, LocalDateTime endDate) {
+    public static double getCompanyRevenueForPeriod(long companyId, LocalDateTime startDate, LocalDateTime endDate) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 

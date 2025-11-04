@@ -1,8 +1,7 @@
 package org.example.controller;
 
 import org.example.controller.contracts.IEmployeeController;
-import org.example.core.EmployeeService;
-import org.example.core.contracts.IEmployeeService;
+import org.example.core.EmployeeDao;
 import org.example.data.entity.Employee;
 import org.example.data.entity.enums.DriverType;
 import org.example.dto.employee.CreateEmployeeDto;
@@ -16,11 +15,7 @@ import java.util.StringJoiner;
 import static org.example.common.OutputMessages.*;
 
 public class EmployeeController implements IEmployeeController {
-    private final IEmployeeService employeeService;
-
-    public EmployeeController() {
-        this.employeeService = new EmployeeService();
-    }
+    public EmployeeController() {}
 
     @Override
     public String create(String[] args) {
@@ -29,7 +24,7 @@ public class EmployeeController implements IEmployeeController {
         DriverType driverType = DriverType.valueOf(args[2]);
         long companyId = Long.parseLong(args[3]);
 
-        this.employeeService.create(new CreateEmployeeDto(name, salary, driverType, companyId));
+        EmployeeDao.create(new CreateEmployeeDto(name, salary, driverType, companyId));
 
         return EMPLOYEE_CREATED_SUCCESSFULLY;
     }
@@ -41,7 +36,7 @@ public class EmployeeController implements IEmployeeController {
         double salary = Double.parseDouble(args[2]);
         DriverType driverType = DriverType.valueOf(args[3]);
 
-        this.employeeService.update(new UpdateEmployeeDto(id, name, salary, driverType));
+        EmployeeDao.update(new UpdateEmployeeDto(id, name, salary, driverType));
 
         return EMPLOYEE_UPDATED_SUCCESSFULLY;
     }
@@ -50,7 +45,7 @@ public class EmployeeController implements IEmployeeController {
     public String delete(String[] args) {
         long id = Long.parseLong(args[0]);
 
-        this.employeeService.delete(id);
+        EmployeeDao.delete(id);
 
         return EMPLOYEE_DELETED_SUCCESSFULLY;
     }
@@ -58,7 +53,7 @@ public class EmployeeController implements IEmployeeController {
     @Override
     public String getByCompanyIdAndSortByQualificationAndSalary(String[] args) {
         long companyId = Long.parseLong(args[0]);
-        List<Employee> employees = this.employeeService
+        List<Employee> employees = EmployeeDao
                 .getByCompanyIdAndSortByQualificationAndSalary(companyId);
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
@@ -74,7 +69,7 @@ public class EmployeeController implements IEmployeeController {
     @Override
     public String getDriversWithCargoCountByCompanyId(String[] args) {
         long companyId = Long.parseLong(args[0]);
-        List<DriverWithCargoCountDto> drivers = this.employeeService
+        List<DriverWithCargoCountDto> drivers = EmployeeDao
                 .getDriversWithCargoCountByCompanyId(companyId);
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
@@ -89,7 +84,7 @@ public class EmployeeController implements IEmployeeController {
     @Override
     public String getDriverRevenueByCompanyId(String[] args) {
         long companyId = Long.parseLong(args[0]);
-        List<DriverWithTotalRevenueDto> revenues = this.employeeService
+        List<DriverWithTotalRevenueDto> revenues = EmployeeDao
                 .getDriverRevenueByCompanyId(companyId);
 
         StringJoiner res = new StringJoiner(System.lineSeparator());
